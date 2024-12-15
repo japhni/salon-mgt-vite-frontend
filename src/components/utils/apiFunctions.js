@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 
-//http://localhost:9192
-//`${process.env.REACT_APP_API_URL}`
+//http://localhost:8080
+//`${import.meta.env.VITE_REACT_APP_API_URL}`
 export const api = axios.create({
-  baseURL: "http://localhost:9192",
+  baseURL: `${import.meta.env.VITE_REACT_APP_API_URL}`,
 });
 const token = localStorage.getItem("token");
 
