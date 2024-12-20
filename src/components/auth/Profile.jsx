@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Cancel, Save, SaveAsOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Box,
@@ -27,6 +28,7 @@ import {
   updateUserById,
   updateUserPasswordById,
 } from "../utils/apiFunctions";
+import profile_photo from "./../../assets/male-placeholder-image.jpeg";
 
 const Profile = () => {
   const userId = localStorage.getItem("userId");
@@ -308,7 +310,7 @@ const Profile = () => {
                 <CardMedia
                   component={"img"}
                   height={250}
-                  image={require("../assets/male-placeholder-image.jpeg")}
+                  image={`url(${profile_photo}`}
                   alt="profile image" 
                 />
               <CardContent>

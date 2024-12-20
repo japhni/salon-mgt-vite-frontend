@@ -3,7 +3,7 @@ import background from "./../../assets/salon-image.jpg";
 function Home() {
 
   const myStyle = {
-    backgroundImage:`url(${background})`,
+    backgroundImage:`url(${background})`, 
     height: "88vh",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
