@@ -357,7 +357,7 @@ export async function getDebtByUserIdAndDatesMedthod(userId,startDate, endDate) 
 /* This function gets all debts refund histories info by id and range date */
 export async function getRefundDebtByUserIdAndDatesMedthod(userId,startDate, endDate) {
 	const result = await api.get(
-    `user-debt-history-by-dates?startDate=${startDate}&endDate=${endDate}&userId=${userId}`, {
+    `user-refund-debt-history-by-dates?startDate=${startDate}&endDate=${endDate}&userId=${userId}`, {
       headers: getHeader(),
     })
 	return result

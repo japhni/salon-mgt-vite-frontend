@@ -23,8 +23,7 @@ import {
 const DebtHistory = () => {
   const [employeesInfo, setEmployeesInfo] = useState([]);
 
-  const [resultDateRangeAndUserIdChange, setResultDateRangeAndUserIdChange] =
-    useState([]);
+  const [resultDateRangeAndUserIdChange, setResultDateRangeAndUserIdChange] = useState([]);
   const [errorMessageEmployees, setErrorMessageEmployees] = useState("");
   const [errorMessageSearchByDate, setErrorMessageSearchByDate] = useState("");
   const [isLoading, setIsLoading] = useState(true);

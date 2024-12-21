@@ -23,8 +23,7 @@ const PaidDebtHistory = () => {
 
   const [employeesInfo, setEmployeesInfo] = useState([]);
 
-  const [resultDateRangeAndUserIdChange, setResultDateRangeAndUserIdChange] =
-    useState([]);
+  const [resultDateRangeAndUserIdChange, setResultDateRangeAndUserIdChange] = useState([]);
   const [errorMessageEmployees, setErrorMessageEmployees] = useState("");
   const [errorMessageSearchByDate, setErrorMessageSearchByDate] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -66,7 +65,7 @@ const PaidDebtHistory = () => {
     }, 5000);
   }, []);
 
-  const handleEmployeeDebtHistorySearch = async (e) => {
+  const handleEmployeeDebtPayedHistorySearch = async (e) => {
     e.preventDefault();
     const startDate = moment(searchQuery.startDate);
     const endDate = moment(searchQuery.endDate);
@@ -192,7 +191,7 @@ const PaidDebtHistory = () => {
           <CardContent>
           <Grid container rowSpacing={1} columnSpacing={2}>
             <Grid item xs={12} sm={12} md={12} lg={12}>
-              <form onSubmit={handleEmployeeDebtHistorySearch}>
+              <form onSubmit={handleEmployeeDebtPayedHistorySearch}>
                 <Stack spacing={1} sx={{ mb: 2 }} direction={"row"}>
                   <TextField
                     label="Choisir le Coiffeur"
@@ -246,7 +245,7 @@ const PaidDebtHistory = () => {
                 </Button>
               </form>
             </Grid>
-            
+
             <Grid item xs={12} sm={12} md={12} lg={12}>
               {isLoading ? (
                 <p className="mt-4">Recherche l'historique des dettes....</p>
