@@ -103,37 +103,37 @@ const PaidDebtHistory = () => {
 
   const columns = [
     {
-      field: "requester.lastName",
+      field: "refunder.lastName",
       headerName: "Nom",
       width: 120,
       cellClassName: "name-column--cell",
       valueGetter: (value, row) => {
-        return `${row.requester.lastName}`;
+        return `${row.refunder.lastName}`;
       },
     },
     {
-      field: "requester.firstName",
+      field: "refunder.firstName",
       headerName: "Prenom",
       width: 120,
       cellClassName: "name-column--cell",
       valueGetter: (value, row) => {
-        return `${row.requester.firstName}`;
+        return `${row.refunder.firstName}`;
       },
     },
 
     {
-      field: "requester.otherNames",
+      field: "refunder.otherNames",
       headerName: "Surnom",
       width: 120,
       cellClassName: "name-column--cell",
       valueGetter: (value, row) => {
-        return `${row.requester.otherNames}`;
+        return `${row.refunder.otherNames}`;
       },
     },
 
     {
-      field: "debtDate",
-      headerName: "Date d'acquisation de dette",
+      field: "paidDate",
+      headerName: "Date de remboursement de dette",
       width: 200,
       cellClassName: "name-column--cell",
       valueGetter: (value) => {
@@ -153,8 +153,8 @@ const PaidDebtHistory = () => {
 
     {
       field: "details",
-      headerName: "Motif d'acquisation de dette",
-      width: 220,
+      headerName: "Commentaire sur remboursement de dette",
+      width: 250,
       cellClassName: "name-column--cell",
     },
 
