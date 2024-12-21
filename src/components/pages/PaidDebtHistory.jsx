@@ -1,7 +1,5 @@
-/* eslint-disable no-sequences */
-import React from 'react';
-
-import {
+/* eslint-disable react/no-unescaped-entities */
+ import {
   Box,
   Button,
   Card,
@@ -87,7 +85,7 @@ const PaidDebtHistory = () => {
       searchQuery.startDate,
       searchQuery.endDate
     )
-      .then((response) => {
+      .then((response) => { 
         setResultDateRangeAndUserIdChange(response.data);
         setIsLoading(false);
       })
@@ -98,7 +96,7 @@ const PaidDebtHistory = () => {
   };
 
   const data = resultDateRangeAndUserIdChange,
-    keys = ["debtAmount"],
+    keys = ["amountPaid"], 
     sums = data.reduce(
       (r, o) => (keys.forEach((k) => (r[k] += o[k])), r),
       Object.fromEntries(keys.map((k) => [k, 0]))
@@ -148,7 +146,7 @@ const PaidDebtHistory = () => {
     },
 
     {
-      field: "debtAmount",
+      field: "amountPaid",
       headerName: "Montant",
       width: 120,
       cellClassName: "name-column--cell",
@@ -248,7 +246,7 @@ const PaidDebtHistory = () => {
                 </Button>
               </form>
             </Grid>
-
+            
             <Grid item xs={12} sm={12} md={12} lg={12}>
               {isLoading ? (
                 <p className="mt-4">Recherche l'historique des dettes....</p>
@@ -256,7 +254,7 @@ const PaidDebtHistory = () => {
                 <Box m="20px">
                   <Header
                     title="Historique des dettes"
-                    subtitle={`Dette paye dans cette periode specifie: ${sums.debtAmount}`}
+                    subtitle={`Dette paye dans cette periode specifie: ${sums.amountPaid}`}
                   />
                     {isLoading ? (
                       <div>Loading l'historique...</div>

@@ -1,4 +1,4 @@
-/* eslint-disable no-sequences */
+/* eslint-disable react/no-unescaped-entities */
 import {
   Alert,
   Box,
@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import moment from "moment/moment";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../charts/Header";
 import {
   getAllEmployees,
@@ -75,7 +75,7 @@ const DebtHistory = () => {
       );
       return;
     }
-    getDebtByUserIdAndDatesMedthod(
+    getDebtByUserIdAndDatesMedthod( 
       searchQuery.user_id,
       searchQuery.startDate,
       searchQuery.endDate

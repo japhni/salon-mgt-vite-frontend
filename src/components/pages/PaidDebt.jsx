@@ -12,7 +12,7 @@ import {
   TextField,
 } from "@mui/material";
 import moment from "moment/moment";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { createDebtPaid, getAllEmployees } from "../utils/apiFunctions";
 
 const PaidDebt = () => {

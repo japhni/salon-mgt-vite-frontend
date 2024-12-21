@@ -11,7 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 import moment from "moment/moment";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { createNewDebt, getAllEmployees } from "../utils/apiFunctions";
 
 const Debt = () => {
@@ -77,7 +77,7 @@ const Debt = () => {
         setOpen(true)
       }
     } catch (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(error.message); 
       setOpen(true)
     }
   };
