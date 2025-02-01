@@ -427,12 +427,12 @@ const Customer = () => {
                         <FormControlLabel
                           value={true}
                           control={<Radio />}
-                          label="Pique"
+                          label="Motivé"
                         />
                         <FormControlLabel
                           value={false}
                           control={<Radio />}
-                          label="Pas Pique"
+                          label="Non Motivé"
                         />
                       </RadioGroup>
                     </FormControl>

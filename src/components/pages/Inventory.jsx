@@ -1,4 +1,3 @@
-/* eslint-disable no-sequences */
 import { Replay } from "@mui/icons-material";
 import {
   Alert,
@@ -9,12 +8,13 @@ import {
   Divider,
   MenuItem,
   Paper,
+  Snackbar,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
 import moment from "moment/moment";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   getAllEmployees,
   getDebtByRequesterId,
@@ -30,11 +30,7 @@ const Inventory = () => {
   const [debtHistoryInfo, setDebtHistoryInfo] = useState([]);
   const [debtPaidHistoryInfo, setDebtPaidHistoryInfo] = useState([]);
 
-  const [errorDebtHistory, setErrorDebtHistory] = useState("");
-  const [errorDebtPaidHistory, setErrorDebtPaidHistory] = useState("");
-
   const [resultDateRangeChange, setResultDateRangeChange] = useState([]);
-  const [errorMessageEmployee, setErrorMessageEmployee] = useState("");
   const [errorMessageEmployees, setErrorMessageEmployees] = useState("");
   const [errorMessageSearchByDate, setErrorMessageSearchByDate] = useState("");
 
@@ -47,6 +43,15 @@ const Inventory = () => {
     month: "2-digit",
     day: "2-digit",
   });
+
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
 
   const [searchQuery, setSearchQuery] = useState({
     employee_id: "",
@@ -121,7 +126,7 @@ const Inventory = () => {
         }
       })
       .catch((error) => {
-        setErrorMessageEmployee(error.message);
+        console.error(error.message);
       });
   }, [searchQuery.employee_id, token, searched]);
 
@@ -133,7 +138,7 @@ const Inventory = () => {
         }
       })
       .catch((error) => {
-        setErrorDebtHistory(error.message);
+        console.error(error.message);
       });
   }, [searchQuery.employee_id, token, searched]);
 
@@ -145,7 +150,7 @@ const Inventory = () => {
         }
       })
       .catch((error) => {
-        setErrorDebtPaidHistory(error.message);
+        console.error(error.message);
       });
   }, [searchQuery.employee_id, token, searched]);
 
@@ -170,8 +175,6 @@ const Inventory = () => {
       Object.fromEntries(debtPaidKey.map((k) => [k, 0]))
     );
 
-    console.log(Object.values(searchQuery.employee_id))
-
   return (
     <Box
       alignItems="center"
@@ -184,69 +187,48 @@ const Inventory = () => {
         <Card>
           <CardContent>
             {errorMessageSearchByDate && (
-              <Alert
-                variant="standard"
-                severity="error"
-                onClose={() => {
-                  setErrorMessageSearchByDate("");
+              <Snackbar
+                open={open}
+                autoHideDuration={6000}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
                 }}
               >
-                {errorMessageSearchByDate}
-              </Alert>
+                <Alert
+                  variant="standard"
+                  severity="error"
+                  onClose={() => {
+                    setErrorMessageSearchByDate("");
+                  }}
+                >
+                  {errorMessageSearchByDate}
+                </Alert>
+              </Snackbar>
             )}
 
             {errorMessageEmployees && (
-              <Alert
-                variant="standard"
-                severity="error"
-                onClose={() => {
-                  setErrorMessageEmployees("");
+              <Snackbar
+                open={open}
+                autoHideDuration={6000}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
                 }}
               >
-                {errorMessageEmployees}
-              </Alert>
+                <Alert
+                  variant="standard"
+                  severity="error"
+                  onClose={() => {
+                    setErrorMessageEmployees("");
+                  }}
+                >
+                  {errorMessageEmployees}
+                </Alert>
+              </Snackbar>
             )}
-
-            {searchQuery.employee_id !== ""
-              ? errorMessageEmployee && (
-                  <Alert
-                    variant="standard"
-                    severity="error"
-                    onClose={() => {
-                      setErrorMessageEmployee("");
-                    }}
-                  >
-                    {errorMessageEmployee}
-                  </Alert>
-                )
-              : ""}
-
-            {searchQuery.employee_id !== ""
-              ? errorDebtHistory && (
-                  <Alert
-                    variant="standard"
-                    severity="error"
-                    onClose={() => {
-                      setErrorDebtHistory("");
-                    }}
-                  >
-                    {errorDebtHistory}
-                  </Alert>
-                )
-              : ""}
-            {searchQuery.employee_id !== ""
-              ? errorDebtPaidHistory &&(
-                  <Alert
-                    variant="standard"
-                    severity="error"
-                    onClose={() => {
-                      setErrorDebtPaidHistory("");
-                    }}
-                  >
-                    {errorDebtPaidHistory}
-                  </Alert>
-                )
-              : ""}
 
             <form onSubmit={handleEmployeeHistorySearch}>
               <Stack
